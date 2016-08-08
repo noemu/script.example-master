@@ -38,10 +38,14 @@ def main():
             started = xbmcgui.Window(10000).getProperty("spotify-showing") == u'true'
         except ValueError as e:
             started = False
-        if(isPlaying) and not started:
+        if(isPlaying) and not started:    
             xbmc.executebuiltin('RunAddon("plugin.audio.example")')
+            
+            #wakeup from screensaver by simulating a button activity
+            json_query = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Input.ContextMenu", "id": 1}')
+            
         xbmc.sleep(2)
-        xbmc.log("sc: " + str(not(xbmcgui.Window(10000).getProperty("spotify-showing") == 'true'))+" isPlay: "+str(isPlaying))
+        #xbmc.log("sc: " + str(not(xbmcgui.Window(10000).getProperty("spotify-showing") == 'true'))+" isPlay: "+str(isPlaying))
 
 
     

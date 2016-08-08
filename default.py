@@ -43,12 +43,11 @@ class PlayerWindow(xbmcgui.Window):
         ACTION_RIGHT = 2
         ACTION_MIDDLE = 7
 
-        ids = str(action.getId())
+        #ids = str(action.getId())
         
-        xbmc.log(ids)
+        #xbmc.log(ids)
         
         if (action == ACTION_PREVIOUS_MENU) or (action == ACTION_NAV_BACK):
-            xbmc.log("hi " + str(ids) )
             self.isRunning = False
             self.close()
             
@@ -110,10 +109,21 @@ def setVol(value):
     requests.post(volume,data=jsonPost)
 
 def updateInfo(name,window):
+    screensaverDelay = 30
+    screensaverCount = 0
+    updateInterval = 2
+
+
     while window.isRunning and (not xbmc.abortRequested):
         information = getInfo()
         window.updateLabels(information)
-        time.sleep(2)
+        time.sleep(updateInterval)
+        screensaverCount = screensaverCount + updateInterval
+        
+        if(screensaverCount>screensaverDelay):
+            #wakeup from screensaver by simulating a button activity
+            json_query = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Input.ContextMenu", "id": 1}')
+            screensaverCount = 0
 
 def main():
     pw = PlayerWindow()
@@ -146,6 +156,8 @@ if __name__ == '__main__':
     volume = page+apiPlayback+'/volume'
     info = page+'/api/info/metadata'
     status = page+'/api/info/status'
+    
+
 
 
     main()
