@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <window id="1112" type="window">
-	<defaultcontrol always="true">99</defaultcontrol>
+	<defaultcontrol always="true">810</defaultcontrol>
 	<coordinates>
 		<posx>0</posx>
 		<posy>0</posy>
@@ -20,7 +20,7 @@
             <posx>500</posx>
             <posy>120</posy>
         
-            <control type="image" id="801">
+            <control type="image" id="800">
                         <description>Cover image</description>
                         <posx>60</posx>
                         <posy>0</posy>
@@ -29,7 +29,7 @@
             </control>
             
             
-            <control type="label" id="101">
+            <control type="label" id="801">
                 <description>Title label</description>
                 <wrapmultiline>true</wrapmultiline>
                 <posx>0</posx>
@@ -46,7 +46,7 @@
 
             
             
-            <control type="label" id="102">
+            <control type="label" id="802">
                 <description>Artist Label</description>
                 <posx>0</posx>
                 <posy>300</posy>
@@ -60,7 +60,7 @@
             </control>
             
             
-            <control type="label" id="103">
+            <control type="label" id="803">
                 <description>Album Label</description>
                 <posx>0</posx>
                 <posy>360</posy>
@@ -73,26 +73,174 @@
                 <shadowcolor>FF000000</shadowcolor> <!-- black -->
             </control>
             
+            <control type="group" id="804">
+                <posx>30</posx>
+                <posy>420</posy>
+                <defaultcontrol always="true">815</defaultcontrol>
+                <control type="button" id="814">
+                    <description>quieter</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>20</width>
+                    <height>20</height>
+                    <label>-</label>
+                    <texturefocus>glyphicons-184-volume-down.png</texturefocus>
+                    <texturenofocus>glyphicons-184-volume-down_sel.png</texturenofocus>
+                    <onup>805</onup>
+                    <ondown>805</ondown>
+                    <onleft>816</onleft>
+                    <onright>815</onright>
+                    <visible>True</visible>
+                </control>
+                
+                <control type="slider" id="815">
+                      <description>Volume Slider</description>
+                      <left>30</left>
+                      <top>0</top>
+                      <width>250</width>
+                      <height>30</height>
+                      <visible>true</visible>
+                      <texturesliderbar>sliderbar.png</texturesliderbar>
+                      <textureslidernib>nibfocus.png</textureslidernib>
+                      <textureslidernibfocus>nib.png</textureslidernibfocus>
+                      <info></info>
+                      <action></action>
+                      <controloffsetx></controloffsetx>
+                      <controloffsety></controloffsety>
+                      <pulseonselect></pulseonselect>
+                      <onup>805</onup>
+                      <ondown>805</ondown>
+                      <onleft>814</onleft>
+                      <onright>816</onright>
+                </control>
+                
+                <control type="button" id="816">
+                    <description>louder</description>
+                    <posx>290</posx>
+                    <posy>0</posy>
+                    <width>20</width>
+                    <height>20</height>
+                    <label>-</label>
+                    <texturefocus>glyphicons-185-volume-up.png</texturefocus>
+                    <texturenofocus>glyphicons-185-volume-up_sel.png</texturenofocus>
+                    <onup>805</onup>
+                    <ondown>805</ondown>
+                    <onleft>815</onleft>
+                    <onright>814</onright>
+                    <visible>True</visible>
+                </control>
+            </control>
             
-            <control type="slider" id="17">
-                  <description>Volume Slider</description>
-                  <left>30</left>
-                  <top>420</top>
-                  <width>250</width>
-                  <height>30</height>
-                  <visible>true</visible>
-                  <texturesliderbar>sliderbar.png</texturesliderbar>
-                  <textureslidernib>nib.png</textureslidernib>
-                  <textureslidernibfocus>nibfocus.png</textureslidernibfocus>
-                  <info></info>
-                  <action></action>
-                  <controloffsetx></controloffsetx>
-                  <controloffsety></controloffsety>
-                  <pulseonselect></pulseonselect>
-                  <onup>2</onup>
-                  <ondown>3</ondown>
-                  <onleft>1</onleft>
-                  <onright>1</onright>
+            
+            <control type="group" id="805">
+                <posx>30</posx>
+                <posy>470</posy>
+                
+                <control type="button" id="806">
+                    <description>Shuffle</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>20</width>
+                    <height>20</height>
+                    <label>-</label>
+                    <texturefocus>glyphicons-84-random.png</texturefocus>
+                    <texturenofocus>glyphicons-84-random_sel.png</texturenofocus>
+                    <onleft>813</onleft>
+                    <onright>807</onright>
+                    <onup>804</onup>
+                    <ondown>804</ondown>
+                    <visible>True</visible>
+                </control>
+                
+                <control type="button" id="807">
+                    <description>Repeat</description>
+                    <posx>30</posx>
+                    <posy>0</posy>
+                    <width>20</width>
+                    <height>20</height>
+                    <label>-</label>
+                    <texturefocus>glyphicons-86-repeat.png</texturefocus>
+                    <texturenofocus>glyphicons-86-repeat_sel.png</texturenofocus>
+                    <onleft>806</onleft>
+                    <onright>808</onright>
+                    <onup>804</onup>
+                    <ondown>804</ondown>
+                    <visible>True</visible>
+                </control>
+                
+                
+                <control type="group" id="808">
+                    <posx>100</posx>
+                    <posy>0</posy>
+                    
+                    <control type="button" id="809">
+                        <description>Previous</description>
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>20</width>
+                        <height>20</height>
+                        <label>-</label>
+                        <texturefocus>glyphicons-171-step-backward.png</texturefocus>
+                        <texturenofocus>glyphicons-171-step-backward_sel.png</texturenofocus>
+                        <onleft>807</onleft>
+                        <onright>810</onright>
+                        <onup>804</onup>
+                        <ondown>804</ondown>
+                        <visible>True</visible>
+                    </control>
+                    
+                    <control type="group" id="810">
+                        <posx>30</posx>
+                        <posy>0</posy>
+                        <control type="button" id="811">
+                            <description>Play</description>
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>20</width>
+                            <height>20</height>
+                            <label>-</label>
+                            <texturefocus>glyphicons-174-play.png</texturefocus>
+                            <texturenofocus>glyphicons-174-play_sel.png</texturenofocus>
+                            <onleft>809</onleft>
+                            <onright>813</onright>
+                            <onup>804</onup>
+                            <ondown>804</ondown>
+                            <visible>True</visible>
+                        </control>
+                        <control type="button" id="812">
+                            <description>Pause</description>
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>20</width>
+                            <height>20</height>
+                            <label>-</label>
+                            <texturefocus>glyphicons-175-pause.png</texturefocus>
+                            <texturenofocus>glyphicons-175-pause_sel.png</texturenofocus>
+                            <onleft>809</onleft>
+                            <onright>813</onright>
+                            <onup>804</onup>
+                            <ondown>804</ondown>
+                            <visible>!Control.IsVisible(811)</visible>
+                        </control>
+                    </control>
+                    
+                    <control type="button" id="813">
+                        <description>Next</description>
+                        <posx>60</posx>
+                        <posy>0</posy>
+                        <width>20</width>
+                        <height>20</height>
+                        <label>-</label>
+                        <texturefocus>glyphicons-179-step-forward.png</texturefocus>
+                        <texturenofocus>glyphicons-179-step-forward_sel.png</texturenofocus>
+                        <onleft>810</onleft>
+                        <onright>806</onright>
+                        <onup>804</onup>
+                        <ondown>804</ondown>
+                        <visible>True</visible>
+                    </control>
+                    
+                </control>
             </control>
         </control>
 	</controls>

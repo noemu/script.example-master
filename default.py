@@ -16,22 +16,22 @@ import time
 
 
 class PlayerWindow(xbmcgui.WindowXML):
-    LABEL_ARTIST = 102
-    LABEL_TITEL = 101
-    LABEL_ALBUM = 103
-    IMG_ALBUM = 801
+    LABEL_ARTIST = 802
+    LABEL_TITEL = 801
+    LABEL_ALBUM = 803
+    IMG_ALBUM = 800
+    SLIDER_VOL = 815
+    BUTTON_SHUFFLE = 805
+    BUTTON_REPEAT = 807
+    BUTTON_BACK = 809
+    BUTTON_PLAY = 811
+    BUTTON_PAUSE = 812
+    BUTTON_FOR = 813
+    BUTTON_VOL_UP = 816
+    BUTTON_VOL_DOWN = 814
     def __init__(self, *args, **kwargs): 
         self.isRunning = True
 
-        #self.albumCover = xbmcgui.ControlImage(300,300,200,200, '/tmp/spotAlCov.png')
-        #self.titleLabel = xbmcgui.ControlLabel(550, 300, 400, 50,"title", textColor='0xFFFFFFFF',font = 'font20')
-        #self.artistLabel = xbmcgui.ControlLabel(550, 380, 400, 50,"artist", textColor='0xFFFFFFFF',font = 'font13')
-        #self.albumName = xbmcgui.ControlLabel(550, 460, 400, 50,"title", textColor='0xFFFFFFFF',font = 'font13')
-
-        
-        #self.addControl(self.titleLabel)
-        #self.addControl(self.artistLabel)
-        #self.addControl(self.albumName)
         self.volume = 100
 
         
@@ -45,7 +45,28 @@ class PlayerWindow(xbmcgui.WindowXML):
         ACTION_LEFT = 1
         ACTION_RIGHT = 2
         ACTION_MIDDLE = 7
+        
+        ACTION_PAUSE = 12
+        ACTION_STOP = 13
+        ACTION_NEXT_ITEM = 14
+        ACTION_PREV_ITEM = 15
+        
+        ACTION_FORWARD = 16
+        ACTION_REWIND = 17
+        ACTION_PLAYER_FORWARD = 77
+        ACTION_PLAYER_REWIND = 78
 
+        ACTION_PLAYER_PLAY = 79
+        ACTION_VOLUME_UP = 88
+        ACTION_VOLUME_DOWN = 89
+        ACTION_MUTE = 91
+        
+        ACTION_PAGE_UP = 5 
+        ACTION_PAGE_DOWN = 6  
+
+        
+
+        
         #ids = str(action.getId())
         
         #xbmc.log(ids)
@@ -55,37 +76,85 @@ class PlayerWindow(xbmcgui.WindowXML):
             self.isRunning = False
             self.close()
             
-        if (action == ACTION_UP):
-            self.volume = self.volume + 5
+
+        if (action == ACTION_LEFT) or (action == ACTION_RIGHT):
+            self.volSlider = self.getControl(self.SLIDER_VOL)
+            volume = self.volSlider.getPercent()
+            setVol(volume)
+                
+        if(action == ACTION_PLAYER_PLAY) or (action == ACTION_PAUSE):
+            if(self.playing):
+                getSite(pause)
+                
+            else:
+                getSite(play)
+                
+                
+                
+        if (action == ACTION_VOLUME_UP):
+            self.volume = self.volume + 3
             if(self.volume > 100):
                 self.volume = 100
             setVol(self.volume)
+            self.volSlider = self.getControl(self.SLIDER_VOL)
+            self.volSlider.setPercent(self.volume)
                 
-        if (action == ACTION_DOWN):
-            self.volume = self.volume- 5
+        if (action == ACTION_VOLUME_DOWN):
+            self.volume = self.volume- 3
             if(self.volume < 0):
                 self.volume = 0
             setVol(self.volume)
+            self.volSlider = self.getControl(self.SLIDER_VOL)
+            self.volSlider.setPercent(self.volume)
         
-        if (action == ACTION_RIGHT):
+        if (action == ACTION_FORWARD) or (action == ACTION_PLAYER_FORWARD) or (action == ACTION_NEXT_ITEM) or (action == ACTION_PAGE_UP):
             getSite(next)
             
-        if (action == ACTION_LEFT):
+        if (action == ACTION_REWIND) or (action == ACTION_PLAYER_REWIND) or (action == ACTION_PREV_ITEM) or (action == ACTION_PAGE_DOWN):
             getSite(prev)
             
-        if(action == ACTION_MIDDLE):
+        if(action == ACTION_STOP):
+            getSite(pause)
+            
+            
+            
+    def onClick(self, controlID):
+                
+        if (controlID == self.BUTTON_PAUSE) or (controlID == self.BUTTON_PLAY):
             if(self.playing):
-                getSite(pause)
+                getSite(pause)                
             else:
-                getSite(play)
+                getSite(play)      
+                
+        if (controlID == self.BUTTON_VOL_UP):
+            self.volume = self.volume + 3
+            if(self.volume > 100):
+                self.volume = 100
+            setVol(self.volume)
+            self.volSlider = self.getControl(self.SLIDER_VOL)
+            self.volSlider.setPercent(self.volume)
+                
+        if (controlID == self.BUTTON_VOL_DOWN):
+            self.volume = self.volume- 3
+            if(self.volume < 0):
+                self.volume = 0
+            setVol(self.volume)
+            self.volSlider = self.getControl(self.SLIDER_VOL)
+            self.volSlider.setPercent(self.volume)
+        
+        if (controlID == self.BUTTON_FOR):
+            getSite(next)
             
+        if (controlID == self.BUTTON_BACK):
+            getSite(prev)
             
-
+    
     def updateLabels(self, information):
         self.albumCover = self.getControl(self.IMG_ALBUM)
         self.titleLabel = self.getControl(self.LABEL_TITEL)
         self.artistLabel = self.getControl(self.LABEL_ARTIST)
         self.albumName = self.getControl(self.LABEL_ALBUM)
+        self.volSlider = self.getControl(self.SLIDER_VOL)
     
     
         self.playing = information['playing']
@@ -94,6 +163,8 @@ class PlayerWindow(xbmcgui.WindowXML):
         self.artistLabel.setLabel( information['artist_name'])
         self.albumCover.setImage(information['cover_url'])
         self.volume = int(information['volume'])/655.35
+        self.volSlider.setPercent(self.volume)
+        self.getControl(self.BUTTON_PLAY).setVisible(self.playing)
 
 
 def getSite(url):
