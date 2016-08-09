@@ -12,4 +12,6 @@ ToDo's:
 * ToDo: Try request.get exception in default.py
 
 
+Used Icons: [glyphicons](http://glyphicons.com/)
+
 
