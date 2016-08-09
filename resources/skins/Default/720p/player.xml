@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window id="1112" type="window">
+	<defaultcontrol always="true">99</defaultcontrol>
+	<coordinates>
+		<posx>0</posx>
+		<posy>0</posy>
+	</coordinates>
+	<controls>
+		<control type="image">
+			<description>Main Background</description>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<colordiffuse>CCFFFFFF</colordiffuse>
+            <texture>background.png</texture>
+		</control>
+        
+        <control type="group" id="99">
+            <posx>500</posx>
+            <posy>120</posy>
+        
+            <control type="image" id="801">
+                        <description>Cover image</description>
+                        <posx>60</posx>
+                        <posy>0</posy>
+                        <width>160</width>
+                        <height>160</height>
+            </control>
+            
+            
+            <control type="label" id="101">
+                <description>Title label</description>
+                <wrapmultiline>true</wrapmultiline>
+                <posx>0</posx>
+                <posy>190</posy>
+                <height>100</height>
+                <width>280</width>
+                <align>center</align>
+                <aligny>top</aligny>
+                <font>font18_title</font>
+                <textcolor>FF000000</textcolor>		<!-- white -->
+                <shadowcolor>FF000000</shadowcolor> <!-- black -->
+            </control>
+            
+
+            
+            
+            <control type="label" id="102">
+                <description>Artist Label</description>
+                <posx>0</posx>
+                <posy>300</posy>
+                <height>50</height>
+                <width>280</width>
+                <align>center</align>
+                <aligny>top</aligny>
+                <font>font11</font>
+                <textcolor>FF000000</textcolor>		<!-- white -->
+                <shadowcolor>FF000000</shadowcolor> <!-- black -->
+            </control>
+            
+            
+            <control type="label" id="103">
+                <description>Album Label</description>
+                <posx>0</posx>
+                <posy>360</posy>
+                <height>50</height>
+                <width>280</width>
+                <align>center</align>
+                <aligny>top</aligny>
+                <font>font11</font>
+                <textcolor>FF000000</textcolor>		<!-- white -->
+                <shadowcolor>FF000000</shadowcolor> <!-- black -->
+            </control>
+            
+            
+            <control type="slider" id="17">
+                  <description>Volume Slider</description>
+                  <left>30</left>
+                  <top>420</top>
+                  <width>250</width>
+                  <height>30</height>
+                  <visible>true</visible>
+                  <texturesliderbar>sliderbar.png</texturesliderbar>
+                  <textureslidernib>nib.png</textureslidernib>
+                  <textureslidernibfocus>nibfocus.png</textureslidernibfocus>
+                  <info></info>
+                  <action></action>
+                  <controloffsetx></controloffsetx>
+                  <controloffsety></controloffsety>
+                  <pulseonselect></pulseonselect>
+                  <onup>2</onup>
+                  <ondown>3</ondown>
+                  <onleft>1</onleft>
+                  <onright>1</onright>
+            </control>
+        </control>
+	</controls>
+ </window>

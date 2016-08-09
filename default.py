@@ -15,20 +15,23 @@ import time
 
 
 
-class PlayerWindow(xbmcgui.Window):
-    def __init__(self): 
+class PlayerWindow(xbmcgui.WindowXML):
+    LABEL_ARTIST = 102
+    LABEL_TITEL = 101
+    LABEL_ALBUM = 103
+    IMG_ALBUM = 801
+    def __init__(self, *args, **kwargs): 
         self.isRunning = True
 
-        self.albumCover = xbmcgui.ControlImage(300,300,200,200, '/tmp/spotAlCov.png')
-        self.titleLabel = xbmcgui.ControlLabel(550, 300, 400, 50,"title", textColor='0xFFFFFFFF',font = 'font20')
-        self.artistLabel = xbmcgui.ControlLabel(550, 380, 400, 50,"artist", textColor='0xFFFFFFFF',font = 'font13')
-        self.albumName = xbmcgui.ControlLabel(550, 460, 400, 50,"title", textColor='0xFFFFFFFF',font = 'font13')
+        #self.albumCover = xbmcgui.ControlImage(300,300,200,200, '/tmp/spotAlCov.png')
+        #self.titleLabel = xbmcgui.ControlLabel(550, 300, 400, 50,"title", textColor='0xFFFFFFFF',font = 'font20')
+        #self.artistLabel = xbmcgui.ControlLabel(550, 380, 400, 50,"artist", textColor='0xFFFFFFFF',font = 'font13')
+        #self.albumName = xbmcgui.ControlLabel(550, 460, 400, 50,"title", textColor='0xFFFFFFFF',font = 'font13')
+
         
-        
-        self.addControl(self.albumCover)
-        self.addControl(self.titleLabel)
-        self.addControl(self.artistLabel)
-        self.addControl(self.albumName)
+        #self.addControl(self.titleLabel)
+        #self.addControl(self.artistLabel)
+        #self.addControl(self.albumName)
         self.volume = 100
 
         
@@ -48,6 +51,7 @@ class PlayerWindow(xbmcgui.Window):
         #xbmc.log(ids)
         
         if (action == ACTION_PREVIOUS_MENU) or (action == ACTION_NAV_BACK):
+            xbmcgui.Window(10000).setProperty("spotify-closed-by-user","true")
             self.isRunning = False
             self.close()
             
@@ -78,6 +82,12 @@ class PlayerWindow(xbmcgui.Window):
             
 
     def updateLabels(self, information):
+        self.albumCover = self.getControl(self.IMG_ALBUM)
+        self.titleLabel = self.getControl(self.LABEL_TITEL)
+        self.artistLabel = self.getControl(self.LABEL_ARTIST)
+        self.albumName = self.getControl(self.LABEL_ALBUM)
+    
+    
         self.playing = information['playing']
         self.titleLabel.setLabel(information['track_name'])
         self.albumName.setLabel(information['album_name'])
@@ -120,13 +130,13 @@ def updateInfo(name,window):
         time.sleep(updateInterval)
         screensaverCount = screensaverCount + updateInterval
         
-        if(screensaverCount>screensaverDelay):
+        if(screensaverCount>screensaverDelay) and information['playing']:
             #wakeup from screensaver by simulating a button activity
             json_query = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Input.ContextMenu", "id": 1}')
             screensaverCount = 0
 
 def main():
-    pw = PlayerWindow()
+    pw = PlayerWindow("player.xml",CWD)
 
     
     xbmcgui.Window( 10000 )
@@ -157,6 +167,8 @@ if __name__ == '__main__':
     info = page+'/api/info/metadata'
     status = page+'/api/info/status'
     
+    ADDON = xbmcaddon.Addon(id='plugin.audio.example')
+    CWD = ADDON.getAddonInfo('path').decode("utf-8")
 
 
 

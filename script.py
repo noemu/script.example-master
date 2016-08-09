@@ -29,6 +29,7 @@ def main():
         try:
             info = requests.get(status)
             isPlaying = info.json()['playing']
+            connectedToOSMC = info.json()['active']
         except requests.exceptions.RequestException as e:
             xbmc.sleep(10)
         else:
@@ -36,13 +37,17 @@ def main():
             
         try:
             started = xbmcgui.Window(10000).getProperty("spotify-showing") == u'true'
+            closedByUser = xbmcgui.Window(10000).getProperty("spotify-closed-by-user") == u'true'
         except ValueError as e:
             started = False
-        if(isPlaying) and not started:    
+            
+        if (isPlaying) and (not started) and (not closedByUser) and connectedToOSMC:
             xbmc.executebuiltin('RunAddon("plugin.audio.example")')
             
             #wakeup from screensaver by simulating a button activity
             json_query = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Input.ContextMenu", "id": 1}')
+        if not isPlaying:
+            xbmcgui.Window(10000).setProperty("spotify-closed-by-user","false")
             
         xbmc.sleep(2)
         #xbmc.log("sc: " + str(not(xbmcgui.Window(10000).getProperty("spotify-showing") == 'true'))+" isPlay: "+str(isPlaying))
