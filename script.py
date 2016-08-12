@@ -50,7 +50,7 @@ def main():
             xbmcgui.Window(10000).setProperty("spotify-closed-by-user","false")
             
         xbmc.sleep(2)
-        #xbmc.log("sc: " + str(not(xbmcgui.Window(10000).getProperty("spotify-showing") == 'true'))+" isPlay: "+str(isPlaying))
+        #xbmc.log("spotify: isplaying: " + str(isPlaying)+" started: "+str(started)+" closedByUser: "+str(closedByUser)+" connectedToOSMC: "+str(connectedToOSMC))
 
 
     

@@ -193,6 +193,14 @@ def updateInfo(name,window):
     screensaverDelay = 30
     screensaverCount = 0
     updateInterval = 2
+    
+    while True:
+        try:
+            window.getControl(800)
+            break
+        except Exception:            
+            xbmc.log("Error: can't find Window, try again")
+            time.sleep(1) # maybe fix for can't find window id's
 
 
     while window.isRunning and (not xbmc.abortRequested):
@@ -210,7 +218,7 @@ def main():
     pw = PlayerWindow("player.xml",CWD)
 
     
-    xbmcgui.Window( 10000 )
+    #xbmcgui.Window( 10000 )
 
     t1 = Thread(target=updateInfo,args=("1",pw))
     t1.setDaemon( True)
@@ -220,8 +228,9 @@ def main():
     
     pw.doModal()
     xbmcgui.Window(10000).clearProperty("spotify-showing")
-    del pw
     del t1
+    del pw
+    
 
 
     
