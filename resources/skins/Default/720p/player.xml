@@ -136,37 +136,79 @@
                 <posx>30</posx>
                 <posy>470</posy>
                 
-                <control type="button" id="806">
-                    <description>Shuffle</description>
+                <control type="group" id="806">
                     <posx>0</posx>
                     <posy>0</posy>
-                    <width>20</width>
-                    <height>20</height>
-                    <label>-</label>
-                    <texturefocus>glyphicons-84-random.png</texturefocus>
-                    <texturenofocus>glyphicons-84-random_sel.png</texturenofocus>
-                    <onleft>813</onleft>
-                    <onright>807</onright>
-                    <onup>804</onup>
-                    <ondown>804</ondown>
-                    <visible>True</visible>
+
+                    
+                    <control type="button" id="817">
+                        <description>Shuffle</description>
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>20</width>
+                        <height>20</height>
+                        <label>-</label>
+                        <texturefocus>glyphicons-84-random.png</texturefocus>
+                        <texturenofocus>glyphicons-84-random_sel.png</texturenofocus>
+                        <onleft>813</onleft>
+                        <onright>807</onright>
+                        <onup>804</onup>
+                        <ondown>804</ondown>
+                        <visible>True</visible>
+                    </control>
+                    <control type="button" id="818">
+                        <description>Shuffle Active</description>
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>20</width>
+                        <height>20</height>
+                        <label>-</label>
+                        <texturefocus>glyphicons-84-random_act.png</texturefocus>
+                        <texturenofocus>glyphicons-84-random_sel_act.png</texturenofocus>
+                        <onleft>813</onleft>
+                        <onright>807</onright>
+                        <onup>804</onup>
+                        <ondown>804</ondown>
+                        <visible>!Control.IsVisible(817)</visible>
+                    </control>
                 </control>
                 
-                <control type="button" id="807">
+                <control type="group" id="807">
                     <description>Repeat</description>
                     <posx>30</posx>
                     <posy>0</posy>
-                    <width>20</width>
-                    <height>20</height>
-                    <label>-</label>
-                    <texturefocus>glyphicons-86-repeat.png</texturefocus>
-                    <texturenofocus>glyphicons-86-repeat_sel.png</texturenofocus>
-                    <onleft>806</onleft>
-                    <onright>808</onright>
-                    <onup>804</onup>
-                    <ondown>804</ondown>
-                    <visible>True</visible>
+                    <control type="button" id="819">
+                        <description>Repeat</description>
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>20</width>
+                        <height>20</height>
+                        <label>-</label>
+                        <texturefocus>glyphicons-86-repeat.png</texturefocus>
+                        <texturenofocus>glyphicons-86-repeat_sel.png</texturenofocus>
+                        <onleft>806</onleft>
+                        <onright>808</onright>
+                        <onup>804</onup>
+                        <ondown>804</ondown>
+                        <visible>True</visible>
+                    </control>
+                    <control type="button" id="820">
+                        <description>Repeat Active</description>
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>20</width>
+                        <height>20</height>
+                        <label>-</label>
+                        <texturefocus>glyphicons-86-repeat_act.png</texturefocus>
+                        <texturenofocus>glyphicons-86-repeat_sel_act.png</texturenofocus>
+                        <onleft>806</onleft>
+                        <onright>808</onright>
+                        <onup>804</onup>
+                        <ondown>804</ondown>
+                        <visible>!Control.IsVisible(819)</visible>
+                    </control>
                 </control>
+                
                 
                 
                 <control type="group" id="808">

@@ -10,9 +10,8 @@ ToDo's:
 * ToDo: Icon/Name
 * ToDo: Settingsfile with IpAdress and port
 * ToDo: Try request.get exception in default.py
-* auto start don't work if another programms are running
-* flip play/pause Button
-* Font.xml
+* ToDo: Font.xml
+* ToDo: Waiting for shuffle/repeat fix from Fornoth
 
 Used Icons: [glyphicons](http://glyphicons.com/)
 

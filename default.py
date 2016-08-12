@@ -21,8 +21,12 @@ class PlayerWindow(xbmcgui.WindowXML):
     LABEL_ALBUM = 803
     IMG_ALBUM = 800
     SLIDER_VOL = 815
-    BUTTON_SHUFFLE = 805
-    BUTTON_REPEAT = 807
+    BUTTON_SHUFFLE = 817
+    BUTTON_SHUFFLE_ACT = 818
+    
+    BUTTON_REPEAT = 819
+    BUTTON_REPEAT_ACT = 819
+    
     BUTTON_BACK = 809
     BUTTON_PLAY = 811
     BUTTON_PAUSE = 812
@@ -158,13 +162,18 @@ class PlayerWindow(xbmcgui.WindowXML):
     
     
         self.playing = information['playing']
+
+        
         self.titleLabel.setLabel(information['track_name'])
         self.albumName.setLabel(information['album_name'])
         self.artistLabel.setLabel( information['artist_name'])
         self.albumCover.setImage(information['cover_url'])
         self.volume = int(information['volume'])/655.35
         self.volSlider.setPercent(self.volume)
-        self.getControl(self.BUTTON_PLAY).setVisible(self.playing)
+        
+        self.getControl(self.BUTTON_PLAY).setVisible(not self.playing)
+        self.getControl(self.BUTTON_SHUFFLE).setVisible(not information['shuffle'])
+        self.getControl(self.BUTTON_REPEAT).setVisible(not information['repeat'])
 
 
 def getSite(url):
@@ -175,10 +184,20 @@ def getSite(url):
 
 def getInfo():
     information = getSite(info).json()
-    playing = getSite(status).json()['playing']
+    
+    statusInfo = getSite(status).json()
+    
+    
+    playing = statusInfo['playing']
+    shuffleInfo = statusInfo['shuffle']
+    repeatInfo = statusInfo['repeat']
+    
     coverURL = "http://o.scdn.co/160/"+information['cover_uri'].split(':')[-1]
     information['cover_url'] = coverURL
     information['playing'] = playing
+    information['shuffle'] = shuffleInfo
+    information['repeat'] = repeatInfo
+    
     return information
 
 def downloadCover(url):
@@ -244,8 +263,13 @@ if __name__ == '__main__':
     prev = page+apiPlayback+'/prev'
     next = page+apiPlayback+'/next'
     volume = page+apiPlayback+'/volume'
+    shuffle =  page+apiPlayback+'/shuffle'
+    repeat =  page+apiPlayback+'/repeat'
+    
+    
     info = page+'/api/info/metadata'
     status = page+'/api/info/status'
+    
     
     ADDON = xbmcaddon.Addon(id='plugin.audio.example')
     CWD = ADDON.getAddonInfo('path').decode("utf-8")
